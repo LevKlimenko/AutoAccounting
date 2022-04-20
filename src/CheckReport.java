@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CheckReport {
-
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
     GetYearlyReport yearlyReport;
     MonthReport monthReport;
-    MonthID monthID = new MonthID();
     Scanner scanner;
 
 
@@ -25,24 +25,34 @@ public class CheckReport {
         ArrayList<Double> yearExpense = yearlyReport.getYearExpense().get(year);
         ArrayList<Double> yearIncome = yearlyReport.getYearIncome().get(year);
 
-        if (monthIncome.isEmpty() || monthExpense.isEmpty() || !(yearlyReport.getYearIncome().containsKey(year)&&yearlyReport.getYearExpense().containsKey(year))) {
+        if  (monthIncome.isEmpty() || monthExpense.isEmpty() ||
+            !(yearlyReport.getYearIncome().containsKey(year) &&
+              yearlyReport.getYearExpense().containsKey(year))) {
             System.out.println("Сначала выполните чтение данных");
         }
         else {
 
             for (int i = 0; i < monthIncome.size(); i++) {
                 if (!monthIncome.get(i).equals(yearIncome.get(i))) {
-                    System.out.println("Несоответствие суммы доходов за " + monthID.monthID[i] + "\nЗначение в отчете за месяц: <"
-                            + monthIncome.get(i) + ">. Значение в отчете за год: <" + yearIncome.get(i)+ ">");
+                    System.out.println(ANSI_RED +"Несоответствие суммы доходов за " + MonthID.monthID[i] +
+                                       "\nЗначение в отчете за месяц: <" + monthIncome.get(i) +
+                                       ">. Значение в отчете за год: <" + yearIncome.get(i)+ ">" + ANSI_RESET) ;
+                }
+                else{
+                    System.out.println("Доходы за " + MonthID.monthID[i] + " совпадают с годовым отчетом");
                 }
             }
             for (int i = 0; i < monthExpense.size(); i++) {
                 if (!monthExpense.get(i).equals(yearExpense.get(i))) {
-                    System.out.println("Несоответствие суммы расходов за " + monthID.monthID[i] + "\nЗначение в отчете за месяц: <"
-                            + monthExpense.get(i) + ">. Значение в отчете за год: <" + yearExpense.get(i)+">");
+                    System.out.println(ANSI_RED +"Несоответствие суммы расходов за " + MonthID.monthID[i] +
+                                       "\nЗначение в отчете за месяц: <" + monthExpense.get(i) +
+                                       ">. Значение в отчете за год: <" + yearExpense.get(i)+">"+ ANSI_RESET);
+                }
+                else{
+                    System.out.println("Расходы за " + MonthID.monthID[i] + " совпадают с годовым отчетом");
                 }
             }
-            System.out.println("Отчеты успешно проверены. Данные совпадают");
+            System.out.println("Отчеты успешно проверены");
         }
 
     }
