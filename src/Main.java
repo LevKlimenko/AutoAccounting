@@ -10,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         printMenu();
         MonthReport monthReport = new MonthReport(name,isExpense,quantity,price);
-        GetYearlyReport yearlyReport = new GetYearlyReport();//здесь загружаем новый конструктор из метода
+        GetYearlyReport yearlyReport = new GetYearlyReport(scanner);//здесь загружаем новый конструктор из метода
         CheckReport checkReport = new CheckReport(yearlyReport,monthReport,scanner);
 
         while(true) {

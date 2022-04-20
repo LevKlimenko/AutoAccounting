@@ -7,13 +7,14 @@ import java.util.Scanner;
 
 public class GetYearlyReport {
 
-    HashMap<Integer, ArrayList<Double>> yearIncome = new HashMap<>();
-    HashMap<Integer, ArrayList<Double>> yearExpense = new HashMap<>();
-    ArrayList<Double> yearReportIncome;
-    ArrayList<Double> yearReportExpense;
-    MonthID monthID = new MonthID();
-    Scanner scanner = new Scanner(System.in);
-    MonthReport monthReport = new MonthReport();
+    public HashMap<Integer, ArrayList<Double>> yearIncome = new HashMap<>();
+    public HashMap<Integer, ArrayList<Double>> yearExpense = new HashMap<>();
+    private ArrayList<Double> yearReportIncome;
+    private ArrayList<Double> yearReportExpense;
+    Scanner scanner;
+    public  GetYearlyReport(Scanner scanner){
+        this.scanner = scanner;
+    }
 
     public void readFileContentsOrNull() {
         System.out.println("Введите год:");
@@ -70,7 +71,7 @@ public class GetYearlyReport {
         double profitInMonth = 0;
         for (int i = 0; i< yearExpense.get(year).size(); i++){
             profitInMonth = yearIncome.get(year).get(i) - yearExpense.get(year).get(i);
-            System.out.println("Прибыль в  месяце " + monthID.monthID[i] + ": " + profitInMonth);
+            System.out.println("Прибыль в  месяце " + MonthID.monthID[i] + ": " + profitInMonth);
         }
       }
 

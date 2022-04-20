@@ -11,9 +11,8 @@ public class MonthReport {
     private Double quantity;
     private Double price;
     private HashMap<Integer, ArrayList<MonthObject>> month = new HashMap<>();
-    private ArrayList<Double> sumIncome;
-    private ArrayList<Double> sumExpense;
-    MonthID monthID = new MonthID();
+    public ArrayList<Double> sumIncome;
+    public ArrayList<Double> sumExpense;
 
 
     MonthReport(String nameItem, String isExpense, Double quantityItem, Double priceItem) {
@@ -74,7 +73,7 @@ public class MonthReport {
                 }
             }
         }
-            System.out.println("Самая большая трата месяца: " + itemNameTrue + "\nСтоимость: " + maxExpenseTrue+ "\n") ;
+            System.out.println("Самая большая трата месяца: "+itemNameTrue+"\nСтоимость: "+maxExpenseTrue+"\n") ;
     }
 
     public void getMaxFalseTrue(){
@@ -83,7 +82,7 @@ public class MonthReport {
         }
         else {
             for (int i = 1; i <= month.size(); i++) {
-                System.out.println("Данные за " + monthID.monthID[i-1]);
+                System.out.println("Данные за " + MonthID.monthID[i-1]);
                 getMaxExpenseFalse(i);
                 getMaxExpenseTrue(i);
             }
@@ -105,7 +104,8 @@ public class MonthReport {
         }return sumIncome;
     }
 
-     public ArrayList<Double> getSumExpense() {
+
+    public ArrayList<Double> getSumExpense() {
         sumExpense = new ArrayList<>();
         for (int i = 1; i <= month.size(); i++) {
             double sumTrueMonth = 0;

@@ -1,5 +1,5 @@
 public class MonthID {
-    String[] monthID = {
+    public static String[] monthID = {
                     "Январь",
                     "Февраль",
                     "Март",
