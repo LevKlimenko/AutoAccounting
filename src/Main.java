@@ -4,43 +4,38 @@ public class Main {
     public static void main(String[] args) {
 
         String name = "";
-        String isexpense = "TRUE";
+        String isExpense = "TRUE";
         double quantity = 0;
         double price = 0;
         Scanner scanner = new Scanner(System.in);
         printMenu();
-        MonthReport monthReport = new MonthReport(name,isexpense,quantity,price);
+        MonthReport monthReport = new MonthReport(name,isExpense,quantity,price);
         GetYearlyReport yearlyReport = new GetYearlyReport();//здесь загружаем новый конструктор из метода
+        CheckReport checkReport = new CheckReport(yearlyReport,monthReport,scanner);
+
         while(true) {
             switch (scanner.nextInt()) {
-                case 1:
-                   // System.out.println("Введите месяц для отчета: ");
-                   // int month = scanner.nextInt();
-                    //MonthObject object = new MonthObject(name,isexpense,quantity,price);
-                        monthReport.readFileContentsOrNull();
-                       // monthReport.printAll();
-                  //выбор 1 Считать все месячные отчеты
+                case 1://выбор 1 Считать все месячные отчеты
+                    monthReport.readFileContentsOrNull();
                     printMenu();
                     break;
-                case 2:
-                    yearlyReport.readFileContentsOrNull();//выбор 2 Считать годовой отчет
+                case 2://выбор 2 Считать годовой отчет
+                    yearlyReport.readFileContentsOrNull();
                     printMenu();
                     break;
-                case 3:
-                    //выбор 3 Сверить отчеты
+                case 3://выбор 3 Сверить отчеты
+                    checkReport.checkRep();
                     printMenu();
                     break;
-                case 4:
-                    //выбор 4 Вывести информацию о всех месячных отчетах
+                case 4://выбор 4 Вывести информацию о всех месячных отчетах
+                    monthReport.getMaxFalseTrue();
                     printMenu();
                     break;
-                case 5:
+                case 5://выбор 5 Вывести информацию о годовом отчете
                     yearlyReport.printYearReport();
-                    System.out.println();//выбор 5 Вывести информацию о годовом отчете
                     printMenu();
                     break;
-                case 1551:
-                    //закрытие программы
+                case 1551://закрытие программы
                     System.out.println("Программа завершена");
                     scanner.close();
                     return;
@@ -49,7 +44,6 @@ public class Main {
                     printMenu();
             }
         }
-
     }
 
     private static void printMenu() {

@@ -13,10 +13,7 @@ public class GetYearlyReport {
     ArrayList<Double> yearReportExpense;
     MonthID monthID = new MonthID();
     Scanner scanner = new Scanner(System.in);
-    GetYearlyReport() {
-        //yearReportDohod = new ArrayList<>();
-       // yearReportRashod = new ArrayList<>();
-    }
+    MonthReport monthReport = new MonthReport();
 
     public void readFileContentsOrNull() {
         System.out.println("Введите год:");
@@ -48,17 +45,10 @@ public class GetYearlyReport {
                // e.printStackTrace();
             }
 
-
     }
 
-    public void print(){
-        System.out.println(yearIncome);
-        System.out.println(yearExpense);
-        //System.out.println(yearReportExpense);
-        //System.out.println(yearReportIncome);
-    }
 
-    private double getSredniiRashodYear(int year){
+    private double getAverageExpenseYear(int year){
             int sum=0;
             for (Double rashod : yearExpense.get(year)){
                 sum += rashod;
@@ -67,7 +57,7 @@ public class GetYearlyReport {
             return averageExpense;
             }
 
-      private double getSredniiDohodYear(int year){
+      private double getAverageIncomeYear(int year){
         int sum=0;
         for (Double rashod : yearIncome.get(year)){
             sum += rashod;
@@ -90,31 +80,26 @@ public class GetYearlyReport {
             if (yearIncome.containsKey(year) && yearExpense.containsKey(year)) {
                 System.out.println("Отчет за "+ year + " год:");
                 getProfit(year);
-                System.out.println("Средний расход за все месяцы в году : "+ getSredniiRashodYear(year));
-                System.out.println("Средний доход за все месяцы в году : "+ getSredniiDohodYear(year));
+                System.out.println("Средний расход за все месяцы в году : "+ getAverageExpenseYear(year));
+                System.out.println("Средний доход за все месяцы в году : "+ getAverageIncomeYear(year));
                 System.out.println("Доход по месяцам:");
                 System.out.println(yearIncome.get(year));
                 System.out.println("Расход по месяцам:");
                 System.out.println(yearExpense.get(year));
                 } else {
-                System.out.println("Сначала выполните считывание доходов/расходов за " + year+ " год.\n");
+                System.out.println("Сначала выполните считывание доходов/расходов за " + year+ " год");
             }
             System.out.println();
 
         }
 
-        public HashMap<Integer, ArrayList<Double>> getYearIncomeCheck(){
-                return yearIncome;
-        }
-
-    public ArrayList<Double> getYearIncome(int year){
-        return yearIncome.get(year);
+       public HashMap<Integer, ArrayList<Double>> getYearIncome(){
+        return yearIncome;
     }
 
-
-    public ArrayList getYearExpense(int year){
-        return yearExpense.get(year);
+    public HashMap<Integer, ArrayList<Double>> getYearExpense(){
+        return yearExpense;
     }
 
-    }
+}
 
